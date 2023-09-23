@@ -43,6 +43,14 @@ class Chess
         #binding.pry
     end
 
+    def introduction
+        puts "The game is about to start!"
+        puts "Player 1 enter your name"
+        @player_1  = gets.chomp 
+        puts "Player 2 enter your name"
+        @player_2 = gets.chomp 
+        puts "All right. Let's begin!"
+    end
 end
 
 game = Chess.new
