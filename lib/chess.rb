@@ -52,7 +52,7 @@ class Chess
         puts "All right. Let's begin!"
     end
 
-    def white_piece_choice
+    def chess_piece_choice
         puts "Make your piece choice"
         loop do
             piece = gets.chomp
@@ -66,7 +66,7 @@ class Chess
     def verify_choice(string)
         array = string.split('_')
         return array if (( array[0] = 'white' && @turn.odd?) || ( array[0] = 'black' && @turn.even?)) && ( array[1] = 'pawn' || array[1] = 'bishop' || 
-            array[1] = 'knight' || array[1] = 'rook' || array[1] = 'king' || array[1] = 'queen')
+        array[1] = 'knight' || array[1] = 'rook' || array[1] = 'king' || array[1] = 'queen')
     end
         
 end
