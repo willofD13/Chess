@@ -51,8 +51,23 @@ class Chess
         @player_2 = gets.chomp 
         puts "All right. Let's begin!"
     end
+
+    def white_piece_choice
+        puts "Make your piece choice"
+        loop do
+            piece = gets.chomp
+            verified_input = verify_choice(piece)
+            return verified_input if verified_input
+            
+            puts "Input error"
+        end
+    end
+
+    def verify_choice(string)
+        array = string.split('_')
+        return array if (( array[0] = 'white' && @turn.odd?) || ( array[0] = 'black' && @turn.even?)) && ( array[1] = 'pawn' || array[1] = 'bishop' || 
+            array[1] = 'knight' || array[1] = 'rook' || array[1] = 'king' || array[1] = 'queen')
+    end
+        
 end
 
-game = Chess.new
-game.place_pieces
-game.display_board
