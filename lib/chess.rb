@@ -1,3 +1,4 @@
+require 'pry-byebug'
 class Chess
 
     def initialize 
@@ -19,4 +20,30 @@ class Chess
         puts ""
         puts ""
     end
+
+    def place_pieces
+        @chess_board[1].map! { |i| i = '♙'} 
+        @chess_board[6].map! { |i| i = '♟︎'}
+        @chess_board[0][0] = '♖'
+        @chess_board[0][7] = '♖'
+        @chess_board[7][0] = '♜'
+        @chess_board[7][7] = '♜'
+        @chess_board[0][1] = '♘'
+        @chess_board[0][6] = '♘'
+        @chess_board[7][1] = '♞'
+        @chess_board[7][6] = '♞'
+        @chess_board[0][2] = '♗'
+        @chess_board[0][5] = '♗'
+        @chess_board[7][2] = '♝'
+        @chess_board[7][5] = '♝'
+        @chess_board[0][3] = '♕'
+        @chess_board[0][4] = '♔'
+        @chess_board[7][3] = '♛'
+        @chess_board[7][4] = '♚'
+        #binding.pry
+    end
+
 end
+
+game = Chess.new
+game.place_pieces
