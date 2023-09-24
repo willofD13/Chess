@@ -68,6 +68,16 @@ class Chess
         return string if string == 'pawn' || string == 'rook' || string == 'knight' || string == 'bishop' || string == 'king' || string == 'queen'
     end
         
+    def target_square_choice
+        puts "Enter the target square"
+        loop do
+            target_square = gets.chomp
+            verified_target_square = verify_target_square(target_square)
+            return verified_target_square if verified_target_square
+
+            puts "Input error"
+        end
+    end
         
 
 end
