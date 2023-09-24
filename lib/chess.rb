@@ -69,7 +69,7 @@ class Chess
     end
         
     def target_square_choice
-        puts "Enter the target square"
+        puts "Enter the target square. Please separate numbers with a comma."
         loop do
             target_square = gets.chomp
             verified_target_square = verify_target_square(target_square)
@@ -77,6 +77,11 @@ class Chess
 
             puts "Input error"
         end
+    end
+
+    def verified_target_square(string)
+        array = string.split(',')
+        return array if array[0].between?(0,7) && array[1].between?(0,7)
     end
         
 
