@@ -8,6 +8,7 @@ class Chess
         @turn = 1
         @player_1 = nil
         @player_2 = nil 
+        @chess_piece = nil
     end
 
     def display_board
@@ -55,19 +56,19 @@ class Chess
     def chess_piece_choice
         puts "Make your piece choice"
         loop do
-            piece = gets.chomp
-            verified_input = verify_choice(piece)
-            return verified_input if verified_input
+            @chess_piece = gets.chomp
+            verified_chess_piece = verify_chess_piece(@chess_piece)
+            return verified_chess_piece if verified_chess_piece
             
             puts "Input error"
         end
     end
 
-    def verify_choice(string)
-        array = string.split('_')
-        return array if (( array[0] = 'white' && @turn.odd?) || ( array[0] = 'black' && @turn.even?)) && ( array[1] = 'pawn' || array[1] = 'bishop' || 
-        array[1] = 'knight' || array[1] = 'rook' || array[1] = 'king' || array[1] = 'queen')
+    def verify_chess_piece(string)
+        return string if string == 'pawn' || string == 'rook' || string == 'knight' || string == 'bishop' || string == 'king' || string == 'queen'
     end
         
+        
+
 end
 
