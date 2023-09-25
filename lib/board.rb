@@ -37,5 +37,13 @@ class Board
         puts "#{@chess_board[7][0]} | #{@chess_board[7][1]} | #{@chess_board[7][2]} | #{@chess_board[7][3]} | #{@chess_board[7][4]} | #{@chess_board[7][5]} | #{@chess_board[7][6]} | #{@chess_board[7][7]}"
     end
 
+    def place_piece(location) 
+        row,column = location
+        @chess_board[row][column]
+    end
 
+    def out_of_bounds?(location)
+        row,column = location 
+        row.between?(0,7) && column.between?(0,7)
+    end
 end
