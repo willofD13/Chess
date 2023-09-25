@@ -1,7 +1,6 @@
 class Board 
     def initialize 
         @chess_board = [Array.new(8) { Array.new(8,'_')}]
-
     end
 
     def place_pieces
