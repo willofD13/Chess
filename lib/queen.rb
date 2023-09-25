@@ -1,4 +1,4 @@
-require_relative './Piece.rb'
+require_relative '../lib/piece'
 class Queen < Piece
 
     def initialize(current_square,color)

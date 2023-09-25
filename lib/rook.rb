@@ -1,3 +1,4 @@
+require_relative '../lib/piece'
 class Rook < Piece
 
     def initialize(current_square,color)
