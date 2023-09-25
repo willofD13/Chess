@@ -10,12 +10,22 @@ class Board
         @chess_board = Array.new(8) { Array.new(8)}
     end
 
-    def display_board
+    def display_board 
+        add_pawns
+        8.times do |r|
+            puts '_ _ _ _ _ _ _ _'
+            8.times do |c|
+                print "#{@chess_board[r][c]} "
+            end
+            puts ''
+        end
+    end
+
+    def add_pawns
         8.times do |c|
             @chess_board[1][c] = Pawn.new('black')
-            @chess_board[1][c] = Pawn.new('white')
+            @chess_board[6][c] = Pawn.new('white')
         end
-        puts @chess_board
     end
 
     def place_piece(location) 
