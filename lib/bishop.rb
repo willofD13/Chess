@@ -1,7 +1,7 @@
 require_relative '../lib/piece'
 class Bishop < Piece
 
-    def initialize(current_square,color)
+    def initialize(current_square = nil,color)
         @color = color
         @current_square = current_square
         @moves = [[1,1],[1,-1],[-1,1],[-1,-1]]
