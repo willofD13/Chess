@@ -11,7 +11,25 @@ class Board
     end
 
     def display_board 
-        add_pawns
+        
+        8.times do |r|
+            puts "_ _ _ _ _ _ _ _"
+            8.times do |c|
+                print "#{@chess_board[r][c]} "
+            end
+            puts ''
+        end
+        
+    end
+
+    def add_pawns
+        8.times do |c|
+            @chess_board[1][c] = Pawn.new('black')
+            @chess_board[6][c] = Pawn.new('white')
+        end
+    end
+
+    def add_rest_pieces
         @chess_board[0][0] = Rook.new('black')
         @chess_board[0][7] = Rook.new('black')
         @chess_board[7][0] = Rook.new('white')
@@ -28,22 +46,6 @@ class Board
         @chess_board[0][4] = Queen.new('black')
         @chess_board[7][3] = King.new('white')
         @chess_board[7][4] = Queen.new('white')
-        
-        8.times do |r|
-            puts '_ _ _ _ _ _ _ _'
-            8.times do |c|
-                print "#{@chess_board[r][c]} "
-            end
-            puts ''
-        end
-        
-    end
-
-    def add_pawns
-        8.times do |c|
-            @chess_board[1][c] = Pawn.new('black')
-            @chess_board[6][c] = Pawn.new('white')
-        end
     end
 
     def place_piece(location) 
