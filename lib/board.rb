@@ -7,11 +7,15 @@ require_relative './queen.rb'
 
 class Board 
     def initialize 
-        @chess_board = [Array.new(8) { Array.new(8)}]
+        @chess_board = Array.new(8) { Array.new(8)}
     end
 
     def display_board
-        p @chess_board
+        8.times do |c|
+            @chess_board[1][c] = Pawn.new('black')
+            @chess_board[1][c] = Pawn.new('white')
+        end
+        puts @chess_board
     end
 
     def place_piece(location) 
