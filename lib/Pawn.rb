@@ -1,3 +1,4 @@
+require_relative './Piece.rb'
 class Pawn < Piece
 
     def initialize(current_square,color)

@@ -1,3 +1,4 @@
+require_relative './Piece.rb'
 class Knight < Piece
 
     def initialize(current_square,color)

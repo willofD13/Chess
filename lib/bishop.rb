@@ -1,3 +1,4 @@
+require_relative './Piece.rb'
 class Bishop < Piece
 
     def initialize(current_square,color)
