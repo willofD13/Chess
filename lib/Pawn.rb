@@ -1,4 +1,4 @@
-class Pawn
+class Pawn < Piece
 
     def initialize
         @symbol = '♟︎' if Chess.turn.odd?
