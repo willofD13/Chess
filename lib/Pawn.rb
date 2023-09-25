@@ -1,10 +1,13 @@
 class Pawn < Piece
 
-    def initialize
-        @symbol = '♟︎' if Chess.turn.odd?
-        @symbol = '♙' if Chess.turn.even?
+    def initialize(current_square,color)
+        @color = color
         @type = 'pawn'
-        @current_square = nil
+        @current_square = current_square
         @moves = [[1,0],[2,0]]
+    end
+
+    def to_s 
+        @color == 'black' ? '♙' : '♟︎'
     end
 end
