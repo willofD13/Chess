@@ -56,8 +56,7 @@ class Chess
     def chess_piece_choice
         puts "Make your piece choice"
         loop do
-            @chess_piece = gets.chomp
-            @chess_piece.downcase
+            @chess_piece = gets.chomp.downcase
             verified_chess_piece = verify_chess_piece(@chess_piece)
             return verified_chess_piece if verified_chess_piece
             
