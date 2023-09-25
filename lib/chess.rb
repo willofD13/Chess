@@ -57,6 +57,7 @@ class Chess
         puts "Make your piece choice"
         loop do
             @chess_piece = gets.chomp
+            @chess_piece.downcase
             verified_chess_piece = verify_chess_piece(@chess_piece)
             return verified_chess_piece if verified_chess_piece
             
@@ -81,8 +82,12 @@ class Chess
 
     def verified_target_square(string)
         array = string.split(',')
-        return array if array[0].between?(0,7) && array[1].between?(0,7)
+        return array if array[0].between?(0,7) && array[1].between?(0,7) && @chess_board[array[0]][array[1]] == 
     end
+
+    def make_move
+        @chess_board[first_coord][second_coord] = 
+
         
 
 end
