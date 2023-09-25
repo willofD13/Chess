@@ -12,6 +12,23 @@ class Board
 
     def display_board 
         add_pawns
+        @chess_board[0][0] = Rook.new('black')
+        @chess_board[0][7] = Rook.new('black')
+        @chess_board[7][0] = Rook.new('white')
+        @chess_board[7][7] = Rook.new('white')
+        @chess_board[0][1] = Bishop.new('black')
+        @chess_board[0][6] = Bishop.new('black')
+        @chess_board[7][1] = Bishop.new('white')
+        @chess_board[7][6] = Bishop.new('white')
+        @chess_board[0][2] = Knight.new('black')
+        @chess_board[0][5] = Knight.new('black')
+        @chess_board[7][2] = Knight.new('white')
+        @chess_board[7][5] = Knight.new('white')
+        @chess_board[0][3] = King.new('black')
+        @chess_board[0][4] = Queen.new('black')
+        @chess_board[7][3] = King.new('white')
+        @chess_board[7][4] = Queen.new('white')
+        
         8.times do |r|
             puts '_ _ _ _ _ _ _ _'
             8.times do |c|
@@ -19,6 +36,7 @@ class Board
             end
             puts ''
         end
+        
     end
 
     def add_pawns
