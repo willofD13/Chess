@@ -1,4 +1,4 @@
-class Pawn < Piece
+class Rook < Piece
 
     def initialize(current_square,color)
         @color = color
