@@ -22,6 +22,11 @@ class Board
         
     end
 
+    def []=(location,value)
+        coordinate1, coordinate2 = location
+        @chess_board[coordinate1][coordinate2] = value
+    end
+
     def add_pawns
         8.times do |c|
             @chess_board[1][c] = Pawn.new('black')
@@ -58,6 +63,3 @@ class Board
         row.between?(0,7) && column.between?(0,7)
     end
 end
-
-board = Board.new
-board.display_board
