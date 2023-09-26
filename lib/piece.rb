@@ -1,10 +1,12 @@
 
 
 class Piece 
-    def initialize(color,current_square)
+    def initialize(color,current_square,board)
+        @board = board
         @color = color
         @current_square = current_square
     end
+
 
     def valid_directions(directions)
         array = []
