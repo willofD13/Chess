@@ -4,7 +4,7 @@ class Knight < Piece
     def initialize(current_square = nil,color)
         @color = color
         @current_square = current_square
-        @moves = [[+2,+1], [+2,-1], [+1,+2], [+1,-2], [-1,+2], [-1,-2], [-2,+1], [-2,-1]]
+        @directions = [[+2,+1], [+2,-1], [+1,+2], [+1,-2], [-1,+2], [-1,-2], [-2,+1], [-2,-1]]
     end
 
     def to_s 
