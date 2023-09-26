@@ -6,11 +6,7 @@ class Piece
         @current_square = current_square
     end
 
-    def possible_moves(moves)
-        valid_moves(moves)
-    end
-
-    def valid_moves(moves)
+    def valid_directions(directions)
         array = []
         moves.each do |move|
             x = move[0] + @current_square[0]
