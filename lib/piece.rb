@@ -8,7 +8,7 @@ class Piece
     end
 
     def is_there_an_enemy?(location)
-        @board[location].color != color
+        !@board[location].nil? && @board[location].color != color
     end
 
     def valid_directions(directions)
