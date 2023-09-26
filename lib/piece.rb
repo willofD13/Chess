@@ -1,14 +1,13 @@
 
 
 class Piece 
-    def initialize(color,symbol,current_square)
+    def initialize(color,current_square)
         @color = color
-        @symbol = symbol
         @current_square = current_square
     end
 
     def possible_moves(moves)
-        legal_moves = valid_moves(moves)
+        valid_moves(moves)
     end
 
     def valid_moves(moves)
