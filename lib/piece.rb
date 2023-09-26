@@ -1,8 +1,8 @@
 
 
 class Piece 
-    def initialize(type,symbol,current_square)
-        @type = type
+    def initialize(color,symbol,current_square)
+        @color = color
         @symbol = symbol
         @current_square = current_square
     end

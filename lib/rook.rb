@@ -1,10 +1,8 @@
 require_relative '../lib/piece'
 class Rook < Piece
 
-    def initialize(current_square = nil,color)
-        @color = color
-        @current_square = current_square
-        @directions = [[1,0],[0,1],[-1,0],[0,-1]]
+    def move_dirs
+        [1,0],[0,1],[-1,0],[0,-1]]
     end
 
     def to_s 
