@@ -1,14 +1,14 @@
 
 
 class Piece 
-    def initialize(color,current_square,board)
+    attr_reader :color
+    def initialize(color,board)
         @board = board
         @color = color
-        @current_square = current_square
     end
 
     def is_there_an_enemy?(location)
-        @board.location.color == @color
+        @board[location].color != color
     end
 
     def valid_directions(directions)
