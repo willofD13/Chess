@@ -7,6 +7,9 @@ class Piece
         @current_square = current_square
     end
 
+    def is_there_an_enemy?(location)
+        @board.location.color == @color
+    end
 
     def valid_directions(directions)
         array = []
