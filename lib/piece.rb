@@ -10,14 +10,16 @@ class Piece
         !@board[location].nil? && @board[location].color != color
     end
 
-    def valid_moves(directions,location)
-        moves = []
-        directions.each do |d|
-            x = d[0] + location[0]
-            y = d[1] + location[1]
-            moves << [x,y]
-        end 
-        moves
+    def possible_moves
+        array = []
+        8.times do
+            move_dirs.each do |d|
+                d[0] += 1
+                d[1] += 1
+                array << [d[0],d[1]]
+            end
+        end
+        array
     end
 
 end
