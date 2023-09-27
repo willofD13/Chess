@@ -1,5 +1,5 @@
 class Bishop < Piece
-
+    include Slideable
     def move_dirs
         [[1,1],[1,-1],[-1,1],[-1,-1]]
     end
