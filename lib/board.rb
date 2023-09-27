@@ -68,4 +68,9 @@ class Board
         row,column = location 
         row.between?(0,7) && column.between?(0,7)
     end
+
+    def empty?(location)
+        row,column = location
+        @chess_board[row][column].nil?
+    end
 end
