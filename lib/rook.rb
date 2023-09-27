@@ -1,3 +1,4 @@
+require 'pry-byebug'
 class Rook < Piece
 
     def move_dirs
@@ -8,15 +9,24 @@ class Rook < Piece
         @color == 'black' ? '♖' : '♜'
     end
 
-    def possible_moves
-        array = []
-        8.times do
-            move_dirs.each do |d|
-                d[0] += 1
-                d[1] += 1
-                array << [d[0],d[1]]
+    def valid_moves(location,board)
+        moves = []
+        
+        move_dirs.each do |(dr,dc)|
+            current_r, current_c = location
+            loop do 
+                #binding.pry
+                current_r += dr
+                current_c += dc
+                break if !board.in_bounds?([current_r,current_c]) || is_it_a_friend?([current_r,current_c])
+                if board[[current_r,current_c]].nil?
+                    moves << [current_r,current_c]
+                end
+                if is_there_an_enemy?([current_r,current_c])
+                    moves << [current_r,current_c]
+                end
             end
         end
-        array
+        moves
     end
 end
