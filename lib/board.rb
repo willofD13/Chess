@@ -1,4 +1,4 @@
-require_relative './Pawn.rb'
+require_relative './pawn.rb'
 require_relative './rook.rb'
 require_relative './bishop.rb'
 require_relative './knight.rb'

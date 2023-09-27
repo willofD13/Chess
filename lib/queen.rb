@@ -1,4 +1,3 @@
-require_relative '../lib/piece'
 class Queen < Piece
 
     def move_dirs
