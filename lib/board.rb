@@ -64,7 +64,7 @@ class Board
         @chess_board[row][column]
     end
 
-    def out_of_bounds?(location)
+    def in_bounds?(location)
         row,column = location 
         row.between?(0,7) && column.between?(0,7)
     end
