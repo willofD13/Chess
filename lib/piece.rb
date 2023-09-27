@@ -7,19 +7,10 @@ class Piece
     end
 
     def is_there_an_enemy?(location)
-        !@board[location].nil? && @board[location].color != color
+        !@board[location].nil?  && @board[location].color != color
     end
 
-    def possible_moves
-        array = []
-        8.times do
-            move_dirs.each do |d|
-                d[0] += 1
-                d[1] += 1
-                array << [d[0],d[1]]
-            end
-        end
-        array
+    def is_it_a_friend?(location)
+        !@board[location].nil?  && @board[location].color == color
     end
-
 end
