@@ -7,4 +7,16 @@ class Rook < Piece
     def to_s 
         @color == 'black' ? '♖' : '♜'
     end
+
+    def possible_moves
+        array = []
+        8.times do
+            move_dirs.each do |d|
+                d[0] += 1
+                d[1] += 1
+                array << [d[0],d[1]]
+            end
+        end
+        array
+    end
 end

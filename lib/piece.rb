@@ -9,14 +9,14 @@ class Piece
         !@board[location].nil? && @board[location].color != color
     end
 
-    def valid_directions(directions)
-        array = []
-        moves.each do |move|
-            x = move[0] + @current_square[0]
-            y = move[1] + @current_square[1]
-            array << [x,y]
-        end
-        return array
+    def valid_moves(array,current_location)
+        moves = []
+        array.each do |e|
+            x = e[0] + current_location[0]
+            y = e[1] + current_location[1]
+            moves << [x,y]
+        end 
+        moves
     end
 
 end
