@@ -8,5 +8,5 @@ require_relative './lib/queen.rb'
 require_relative './lib/board.rb'
 
 b = Board.new 
-rook = Rook.new('black',b,[7,0])
-p rook.valid_moves([7,0],b)
+king = King.new('black',b,[3,3])
+p king.valid_moves([3,3],b)
