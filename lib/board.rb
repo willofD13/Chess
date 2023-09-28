@@ -63,11 +63,6 @@ class Board
         @chess_board[7][4] = Queen.new('white',self,[7][4])
     end
 
-    def place_piece(location) 
-        row,column = location
-        @chess_board[row][column]
-    end
-
     def in_bounds?(location)
         row,column = location 
         row.between?(0,7) && column.between?(0,7)
