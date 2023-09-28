@@ -20,7 +20,7 @@ class Pawn < Piece
                 moves << [new_r,new_c] if is_there_an_enemy?([new_r,new_c])
             elsif 
                 dir == move_dirs[1]
-                moves << [new_r,new_c] if (current_r == 1 || current_r == 6) && board.empty?([new_r,new_c])  
+                moves << [new_r,new_c] if (current_r == 1 || current_r == 6) && board.in_bounds?([new_r,new_c]) && board.empty?([new_r,new_c])  
             elsif 
                 dir == move_dirs[0]
                 moves << [new_r,new_c] if board.in_bounds?([new_r,new_c]) && board.empty?([new_r,new_c])
