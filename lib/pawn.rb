@@ -29,5 +29,9 @@ class Pawn < Piece
         end
         moves
     end  
-end
 
+    def queen_transition?(location)
+        (@color == 'black' && location[0] == 7) || (@color == 'white' && location[0] == 0)
+    end
+end
+            
