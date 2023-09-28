@@ -18,6 +18,8 @@ class Piece
         if valid_moves(location,board).include?(target_loc)
             board[location] = nil
             board[target_loc] = self
+        else
+            puts "Target location not valid"
         end
     end
 end
