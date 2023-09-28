@@ -13,4 +13,11 @@ class Piece
     def is_it_a_friend?(location)
         !@board[location].nil?  && @board[location].color == color
     end
+
+    def move_piece(board,location,target_loc)
+        if valid_moves(location,board).include?(target_loc)
+            board[location] = nil
+            board[target_loc] = self
+        end
+    end
 end

@@ -8,7 +8,10 @@ require_relative './lib/queen.rb'
 require_relative './lib/board.rb'
 
 b = Board.new 
-pawn = Pawn.new('black',b,[1,5])
-pawn2 = Pawn.new('white',b,[2,4])
-b[[2,4]] = pawn2
-p pawn.valid_moves([1,5],b)
+b.add_pawns
+b.add_rest_pieces
+b[[0,2]] = Knight.new('black',b,[0,2])
+b[[0,2]].move_piece(b,[0,2],[2,3])
+b[[6,4]] = Pawn.new('white',b,[6,4])
+b[[6,4]].move_piece(b,[6,4],[4,4])
+b.display_board
