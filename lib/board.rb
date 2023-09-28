@@ -37,14 +37,12 @@ class Board
         @chess_board[coordinate1][coordinate2]
     end
 
-    def add_pawns
+    def starting_board
         8.times do |c|
             @chess_board[1][c] = Pawn.new('black',self,[1,c])
             @chess_board[6][c] = Pawn.new('white',self,[6,c])
         end
-    end
 
-    def add_rest_pieces
         @chess_board[0][0] = Rook.new('black',self,[0][0])
         @chess_board[0][7] = Rook.new('black',self,[0][7])
         @chess_board[7][0] = Rook.new('white',self,[7][0])
