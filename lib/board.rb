@@ -1,5 +1,5 @@
 require_relative 'pieces.rb'
-
+require 'pry-byebug'
 class Board 
     def initialize 
         @chess_board = Array.new(8) { Array.new(8)}
@@ -76,5 +76,10 @@ class Board
             puts "Invalid move"
         end
     end
+
+    def pieces 
+        @chess_board.flatten.reject { |e| e.nil? }
+    end
+
 end
 
