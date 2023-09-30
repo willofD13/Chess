@@ -19,4 +19,18 @@ module Escapable
             return true
         end
     end
+
+    def find_checking_pieces(color)
+        king  = pieces.find { |e| e.color == color && e.class == King}
+
+        checking_pieces = []
+
+        pieces.select { |p| p.color != color }.each do |piece|
+            if piece.valid_moves(piece.location,self).include?(king.location)
+                checking_pieces << piece 
+            end
+        end
+
+        checking_pieces
+    end
 end
