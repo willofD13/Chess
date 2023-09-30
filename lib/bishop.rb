@@ -8,10 +8,4 @@ class Bishop < Piece
     def to_s 
         @color == 'black' ? '♗' : '♝'
     end
-
-    def possible_squares
-        8.times do |m|
-            possible_moves
-        end
-    end
 end
