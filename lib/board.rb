@@ -1,6 +1,8 @@
 require_relative 'pieces.rb'
 require 'pry-byebug'
+require_relative 'escapable.rb'
 class Board 
+    include Escapable
     def initialize 
         @chess_board = Array.new(8) { Array.new(8)}
     end
