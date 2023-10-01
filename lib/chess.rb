@@ -25,30 +25,20 @@ class Chess
     end
 
     def starting_location
-        starting_loc = []
         puts "Select your chess piece. Please separate coordinates with a comma(,)"
-        input = gets.chomp
-        starting_loc << input.split(',')[0].to_i
-        starting_loc << input.split(',')[1].to_i
-        starting_loc
+        gets.chomp.split(',').map { |e| e.to_i}
     end
 
     def target_location
-        target_loc = []
         puts "Enter target location of your chess piece. Please separate coordinates with a comma(,)"
-        input = gets.chomp
-        target_loc << input.split(',')[0].to_i
-        target_loc << input.split(',')[1].to_i
-        target_loc
+        gets.chomp.split(',').map { |e| e.to_i}
     end
 
     def player_turn(color)
         board.display_board
         puts "It's #{color}'s turn"
-        starting_loc = starting_location
-        target_loc = target_location
         #binding.pry
-        board.move_piece(starting_loc,target_loc)
+        board.move_piece(starting_location,target_location)
         if board.check?(color)
             puts "Check"
             end
