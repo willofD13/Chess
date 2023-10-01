@@ -57,10 +57,35 @@ module Escapable
                 c_c += dc
                 if c_r == king_loc[0] && c_c == king_loc[1]
                     return [dr,dc]
+                    
                 elsif 
                    !self.in_bounds?([c_r,c_c])
                    break
                 end
+            end
+        end
+    end
+
+    def moves_to_the_king(color)
+        king_loc  = pieces.find { |e| e.color == color && e.class == King}.location
+        current_r, current_c = find_checking_piece(color)[0].location
+        dr,dc = king_dir(color)
+        moves = []
+        
+        loop do 
+            current_r += dr 
+            current_c += dc 
+            break if current_r == king_loc[0] && current_c == king_loc[1]
+            moves << [current_r,current_c]
+        end
+
+        moves 
+    end
+
+    def interpose_piece?(color)
+        pieces.select { |p| p.color != color }.each do |piece|
+            if piece.valid_moves(piece.location,self).intersect?(moves_to_the_king(color))
+                return true
             end
         end
     end
