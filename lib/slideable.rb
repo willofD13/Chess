@@ -5,9 +5,7 @@ module Slideable
         
         move_dirs.each do |(dr,dc)|
             current_r, current_c = location
-            
             loop do 
-                #binding.pry
                 current_r += dr
                 current_c += dc
                 break if !board.in_bounds?([current_r,current_c]) || is_it_a_friend?([current_r,current_c])
@@ -20,6 +18,5 @@ module Slideable
             end
         end
         moves
-        #binding.pry
     end    
 end
