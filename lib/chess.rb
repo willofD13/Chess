@@ -16,7 +16,7 @@ class Chess
     def introduction
         puts 'Welcome to the game.'
         puts 'Player1 enter your name'
-        @player_1 = gets.chomp 
+        @player_1 = gets.chomp
         puts 'Great. You move the white pawns'
         puts 'Player2 enter your name'
         @player_2 = gets.chomp 
@@ -24,12 +24,17 @@ class Chess
         puts 'You are ready to play!'
     end
 
-    def starting_location
+    def starting_location(color)
         puts "Select your chess piece. Please separate coordinates with a comma(,)"
-        gets.chomp.split(',').map { |e| e.to_i}
+        loop do
+            location = gets.chomp.split(',').map { |e| e.to_i}
+            return location if board[location].color == color
+            
+            puts "Wrong chess piece choice!. Please select a piece of #{color} color."
+        end
     end
 
-    def target_location
+    def target_location(color)
         puts "Enter target location of your chess piece. Please separate coordinates with a comma(,)"
         gets.chomp.split(',').map { |e| e.to_i}
     end
@@ -38,7 +43,7 @@ class Chess
         board.display_board
         puts "It's #{color}'s turn"
         #binding.pry
-        board.move_piece(starting_location,target_location)
+        board.move_piece(starting_location(color),target_location(color))
         if board.check?(color)
             puts "Check"
             end
