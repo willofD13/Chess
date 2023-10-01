@@ -70,13 +70,10 @@ class Board
     def move_piece(starting_loc,target_loc)
         piece = self[starting_loc]
 
-        if piece.valid_moves(starting_loc,self).include?(target_loc)
-            self[starting_loc] = nil 
-            self[target_loc] = piece
-            piece.location = target_loc
-        else
-            puts "Invalid move"
-        end
+        self[starting_loc] = nil 
+        self[target_loc] = piece
+        piece.location = target_loc
+    
     end
 
     def pieces 
