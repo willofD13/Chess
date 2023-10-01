@@ -26,7 +26,7 @@ class Chess
 
     def starting_location
         starting_loc = []
-        puts "Enter starting location of your chess piece. Please separate coordinates with a comma(,)"
+        puts "Select your chess piece. Please separate coordinates with a comma(,)"
         input = gets.chomp
         starting_loc << input.split(',')[0].to_i
         starting_loc << input.split(',')[1].to_i
