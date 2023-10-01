@@ -9,6 +9,8 @@ class Chess
         @color = color
         @turn = 1 
         @end_game = false
+        @player_1 = nil 
+        @player_2 = nil
     end
 
     def introduction
@@ -42,6 +44,7 @@ class Chess
 
     def player_turn(color)
         board.display_board
+        puts "It's #{color}'s turn"
         starting_loc = starting_location
         target_loc = target_location
         #binding.pry
