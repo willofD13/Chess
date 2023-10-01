@@ -4,9 +4,9 @@ require 'pry-byebug'
 class Chess 
     @@turn = 1 
     attr_accessor :board, :turn, :color, :end_game
-    def initialize(board = Board.new)
+    def initialize(board)
         @board = board
-        @board.starting_board
+        board.starting_board
         @color = color
         @end_game = false
         @player_1 = nil 
