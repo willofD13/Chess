@@ -87,7 +87,7 @@ module Escapable
     end
 
     def interpose_piece?(color)
-        pieces.select { |p| p.color == color }.each do |piece|
+        pieces.select { |p| p.color == color && p.class != King }.each do |piece|
             if piece.valid_moves(piece.location,self).intersect?(moves_to_the_king(color))
                 return true
             end
