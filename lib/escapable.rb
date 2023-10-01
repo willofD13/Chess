@@ -1,5 +1,9 @@
 require 'pry-byebug'
 module Escapable
+    def checkmate?(color)
+        !go_away?(color) && !capture_checking_piece?(color) && !interpose_piece?(color)
+    end
+
     def go_away?(color)
         king  = pieces.find { |e| e.color == color && e.class == King}
 
@@ -83,11 +87,12 @@ module Escapable
     end
 
     def interpose_piece?(color)
-        pieces.select { |p| p.color != color }.each do |piece|
+        pieces.select { |p| p.color == color }.each do |piece|
             if piece.valid_moves(piece.location,self).intersect?(moves_to_the_king(color))
                 return true
             end
         end
+        return false
     end
 
 end
