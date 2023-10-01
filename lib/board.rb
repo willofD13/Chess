@@ -39,22 +39,22 @@ class Board
             @chess_board[6][c] = Pawn.new('white',self,[6,c])
         end
 
-        @chess_board[0][0] = Rook.new('black',self,[0][0])
-        @chess_board[0][7] = Rook.new('black',self,[0][7])
-        @chess_board[7][0] = Rook.new('white',self,[7][0])
-        @chess_board[7][7] = Rook.new('white',self,[7][7])
-        @chess_board[0][1] = Bishop.new('black',self,[0][1])
-        @chess_board[0][6] = Bishop.new('black',self,[0][6])
-        @chess_board[7][1] = Bishop.new('white',self,[7][1])
-        @chess_board[7][6] = Bishop.new('white',self,[7][6])
-        @chess_board[0][2] = Knight.new('black',self,[0][2])
-        @chess_board[0][5] = Knight.new('black',self,[0][5])
-        @chess_board[7][2] = Knight.new('white',self,[7][2])
-        @chess_board[7][5] = Knight.new('white',self,[7][5])
-        @chess_board[0][3] = King.new('black',self,[0][3])
-        @chess_board[0][4] = Queen.new('black',self,[0][4])
-        @chess_board[7][3] = King.new('white',self,[7][3])
-        @chess_board[7][4] = Queen.new('white',self,[7][4])
+        @chess_board[0][0] = Rook.new('black',self,[0,0])
+        @chess_board[0][7] = Rook.new('black',self,[0,7])
+        @chess_board[7][0] = Rook.new('white',self,[7,0])
+        @chess_board[7][7] = Rook.new('white',self,[7,7])
+        @chess_board[0][1] = Bishop.new('black',self,[0,1])
+        @chess_board[0][6] = Bishop.new('black',self,[0,6])
+        @chess_board[7][1] = Bishop.new('white',self,[7,1])
+        @chess_board[7][6] = Bishop.new('white',self,[7,6])
+        @chess_board[0][2] = Knight.new('black',self,[0,2])
+        @chess_board[0][5] = Knight.new('black',self,[0,5])
+        @chess_board[7][2] = Knight.new('white',self,[7,2])
+        @chess_board[7][5] = Knight.new('white',self,[7,5])
+        @chess_board[0][3] = King.new('black',self,[0,3])
+        @chess_board[0][4] = Queen.new('black',self,[0,4])
+        @chess_board[7][3] = King.new('white',self,[7,3])
+        @chess_board[7][4] = Queen.new('white',self,[7,4])
     end
 
     def in_bounds?(location)
@@ -85,7 +85,6 @@ class Board
 
     def check?(color)
         king_loc = pieces.find { |e| e.color == color && e.class == King}.location
-        #binding.pry
         pieces.select { |p| p.color != color }.each do |piece|
             if piece.valid_moves(piece.location,self).include?(king_loc)
                 return true 
