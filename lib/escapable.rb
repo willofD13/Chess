@@ -26,8 +26,9 @@ module Escapable
     end
 
     def capture_checking_piece?(color)
+        checking_piece = find_checking_piece(color)
         pieces.select { |p| p.color == color}.each do |piece|
-            if piece.valid_moves(piece.location,self).include?(find_checking_piece(color)[0].location)
+            if !checking_piece[0].nil? && piece.valid_moves(piece.location,self).include?(checking_piece[0].location)
                 return true 
             end
         end
