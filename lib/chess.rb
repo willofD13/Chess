@@ -28,9 +28,9 @@ class Chess
         puts "Select your chess piece. Please separate coordinates with a comma(,)"
         loop do
             location = gets.chomp.split(',').map { |e| e.to_i}
-            return location if board[location].color == color
+            return location if !board[location].nil? && board[location].color == color
             
-            puts "Wrong chess piece choice!. Please select a piece of #{color} color."
+            puts "Wrong choice!. Please select a piece of #{color} color."
         end
     end
 
@@ -42,7 +42,6 @@ class Chess
     def player_turn(color)
         board.display_board
         puts "It's #{color}'s turn"
-        #binding.pry
         board.move_piece(starting_location(color),target_location(color))
         if board.check?(color)
             puts "Check"
