@@ -43,7 +43,7 @@ class Chess
         board.display_board
         puts "It's #{color}'s turn"
         starting_loc = starting_location(color)
-        verify_end_location(starting_loc,color)
+        verify_and_move(starting_loc,color)
         
         if board.check?(color)
             puts "Check"
@@ -54,7 +54,7 @@ class Chess
         end
     end
 
-    def verify_end_location(starting_loc,color)
+    def verify_and_move(starting_loc,color)
         loop do
             target_loc = target_location(color)
             if board[starting_loc].valid_moves(starting_loc,board).include?(target_loc)
