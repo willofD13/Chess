@@ -42,13 +42,26 @@ class Chess
     def player_turn(color)
         board.display_board
         puts "It's #{color}'s turn"
-        board.move_piece(starting_location(color),target_location(color))
+        starting_loc = starting_location(color)
+        verify_end_location(starting_loc,color)
+        
         if board.check?(color)
             puts "Check"
             end
         if board.checkmate?(color)
             end_game = true
             puts "Checkmate. Game is over"
+        end
+    end
+
+    def verify_end_location(starting_loc,color)
+        loop do
+            target_loc = target_location(color)
+            if board[starting_loc].valid_moves(starting_loc,board).include?(target_loc)
+                board.move_piece(starting_loc,target_loc) 
+                break
+            end
+            puts "Invalid move!"
         end
     end
 
