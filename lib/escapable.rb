@@ -1,7 +1,7 @@
 require 'pry-byebug'
 module Escapable
     def checkmate?(color)
-        !go_away?(color) && !capture_checking_piece?(color) && !interpose_piece?(color)
+        check?(color) && !go_away?(color) && !capture_checking_piece?(color) && !interpose_piece?(color)
     end
 
     def go_away?(color)
@@ -26,9 +26,8 @@ module Escapable
     end
 
     def capture_checking_piece?(color)
-        checking_piece = find_checking_piece(color)
         pieces.select { |p| p.color == color}.each do |piece|
-            if !checking_piece[0].nil? && piece.valid_moves(piece.location,self).include?(checking_piece[0].location)
+            if piece.valid_moves(piece.location,self).include?(find_checking_piece(color)[0].location)
                 return true 
             end
         end
