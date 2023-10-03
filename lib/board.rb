@@ -92,5 +92,11 @@ class Board
         return false
     end 
 
+    def stalemate?(color)
+        enemy_pieces = pieces.select { |p| p.color != color }
+        enemy_pieces.all? { |piece| piece.valid_moves(piece.location,self).empty? } && !check?(color)
+    end
+
+
 end
 
