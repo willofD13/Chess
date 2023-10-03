@@ -25,12 +25,12 @@ class Chess
     end
 
     def starting_location(color)
-        puts "Select your chess piece. Please separate coordinates with a comma(,)"
+        puts "Select a #{color} chess piece. Please separate coordinates with a comma(,)"
         loop do
             location = gets.chomp.split(',').map { |e| e.to_i}
-            return location if !board[location].nil? && board[location].color == color
+            return location if location.length == 2 && !board[location].nil? && board[location].color == color
             
-            puts "Wrong choice!. Please select a piece of #{color} color."
+            puts "Wrong input!. Be sure to fulfill choice criteria."
         end
     end
 
@@ -57,7 +57,7 @@ class Chess
     def verify_and_move(starting_loc,color)
         loop do
             target_loc = target_location(color)
-            if board[starting_loc].valid_moves(starting_loc,board).include?(target_loc)
+            if  target_loc.length == 2 && board[starting_loc].valid_moves(starting_loc,board).include?(target_loc)
                 board.move_piece(starting_loc,target_loc) 
                 break
             end
