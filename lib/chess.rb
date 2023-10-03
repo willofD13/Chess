@@ -22,8 +22,8 @@ class Chess
         puts 'Player2 enter your name'
         @player_2 = gets.chomp 
         puts 'Thank you. You move the black pawns'
-        puts 'You are ready to play!.Be sure to pick the right chess piece color.
-        First coordinate represents the board row while the second represents column.Both of them must be between 0 and 7.Have fun!'
+        puts 'You are ready to play!.Be sure to pick the right chess piece color.'
+        puts 'First coordinate represents the board row while the second represents column.Both of them must be between 0 and 7.Have fun!'
     end
 
     def starting_location(color)
