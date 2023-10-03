@@ -62,7 +62,10 @@ class Chess
     def verify_and_move(starting_loc,color)
         loop do
             target_loc = target_location(color)
-            if  target_loc.length == 2 && board[starting_loc].valid_moves(starting_loc,board).include?(target_loc)
+        
+            if  !board.king_goes_to_check?(color,starting_loc,target_loc) && target_loc.length == 2 && 
+                board[starting_loc].valid_moves(starting_loc,board).include?(target_loc)
+
                 board.move_piece(starting_loc,target_loc) 
                 break
             end

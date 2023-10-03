@@ -97,6 +97,16 @@ class Board
         enemy_pieces.all? { |piece| piece.valid_moves(piece.location,self).empty? } && !check?(color)
     end
 
+    def king_goes_to_check?(color,starting_loc, target_loc)
+        pieces.select { |p| p.color != color }.each do |piece|
+            if piece.valid_moves(piece.location,self).include?(target_loc) && self[starting_loc].class == King
+                puts "King can not move into a check position."
+                return true 
+            end
+        end
+        return false
+    end
+
 
 end
 
