@@ -49,15 +49,15 @@ class Chess
         board.display_board
         
         if board.check?(color)
-            puts "Check"
+            puts "CHECK"
         end
         if board.checkmate?(color)
             end_game = true
-            puts "Checkmate. The winner is :#{current_player}."
+            puts "CHECKMATE. The winner is :#{current_player}."
         end
         if board.stalemate?(color)
             end_game = true
-            puts "Stalemate. Game is over"
+            puts "STALEMATE. Game is over"
         end
     end
 
