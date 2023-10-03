@@ -5,12 +5,12 @@ module Escapable
     end
 
     def go_away?(color)
-        king  = pieces.find { |e| e.color == color && e.class == King}
+        king  = pieces.find { |e| e.color != color && e.class == King}
 
         king_moves = king.valid_moves(king.location,self)
         forbidden_moves = []
         king_moves.each do |k_m|
-            pieces.select { |p| p.color != color }.each do |piece|
+            pieces.select { |p| p.color == color }.each do |piece|
                 if piece.valid_moves(piece.location,self).include?(k_m)
                     forbidden_moves << k_m
                     break
@@ -26,7 +26,7 @@ module Escapable
     end
 
     def capture_checking_piece?(color)
-        pieces.select { |p| p.color == color}.each do |piece|
+        pieces.select { |p| p.color != color}.each do |piece|
             if piece.valid_moves(piece.location,self).include?(find_checking_piece(color)[0].location)
                 return true 
             end
@@ -37,11 +37,11 @@ module Escapable
 
 
     def find_checking_piece(color)
-        king  = pieces.find { |e| e.color == color && e.class == King}
+        king  = pieces.find { |e| e.color != color && e.class == King}
 
         checking_piece = []
 
-        pieces.select { |p| p.color != color }.each do |piece|
+        pieces.select { |p| p.color == color }.each do |piece|
             if piece.valid_moves(piece.location,self).include?(king.location)
                 checking_piece << piece 
             end
@@ -51,7 +51,7 @@ module Escapable
     end
 
     def king_dir(color)
-        king_loc  = pieces.find { |e| e.color == color && e.class == King}.location
+        king_loc  = pieces.find { |e| e.color != color && e.class == King}.location
         checking_piece = find_checking_piece(color)[0]
 
         checking_piece.move_dirs.each do |(dr,dc)|
@@ -71,7 +71,7 @@ module Escapable
     end
 
     def moves_to_the_king(color)
-        king_loc  = pieces.find { |e| e.color == color && e.class == King}.location
+        king_loc  = pieces.find { |e| e.color != color && e.class == King}.location
         current_r, current_c = find_checking_piece(color)[0].location
         dr,dc = king_dir(color)
         moves = []
@@ -87,7 +87,7 @@ module Escapable
     end
 
     def interpose_piece?(color)
-        pieces.select { |p| p.color == color && p.class != King }.each do |piece|
+        pieces.select { |p| p.color != color && p.class != King }.each do |piece|
             if piece.valid_moves(piece.location,self).intersect?(moves_to_the_king(color))
                 return true
             end
