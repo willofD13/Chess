@@ -48,10 +48,14 @@ class Chess
         
         if board.check?(color)
             puts "Check"
-            end
+        end
         if board.checkmate?(color)
             end_game = true
             puts "Checkmate. Game is over"
+        end
+        if board.stalemate?(color)
+            end_game = true
+            puts "Stalemate. Game is over"
         end
     end
 
