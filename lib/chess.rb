@@ -12,6 +12,7 @@ class Chess
         @end_game = false
         @player_1 = nil 
         @player_2 = nil
+        @current_player = @@turn.odd? ? @player_1 : @player_2
     end
 
     def introduction
@@ -52,7 +53,7 @@ class Chess
         end
         if board.checkmate?(color)
             end_game = true
-            puts "Checkmate. Game is over"
+            puts "Checkmate. The winner is :#{current_player}."
         end
         if board.stalemate?(color)
             end_game = true
