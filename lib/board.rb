@@ -1,6 +1,6 @@
 require_relative 'pieces.rb'
 require 'pry-byebug'
-require_relative 'escapable.rb'
+require_relative './pieces/escapable.rb'
 class Board 
     include Escapable
     def initialize 
