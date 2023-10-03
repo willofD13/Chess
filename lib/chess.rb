@@ -21,21 +21,22 @@ class Chess
         puts 'Player2 enter your name'
         @player_2 = gets.chomp 
         puts 'Thank you. You move the black pawns'
-        puts 'You are ready to play!'
+        puts 'You are ready to play!. Be sure to pick the right chess piece color. First coordinate represents the board row 
+        while the second represents column. Both of them must be between 0 and 7. Have fun!'
     end
 
     def starting_location(color)
-        puts "Select a #{color} chess piece. Please separate coordinates with a comma(,)"
+        puts "Choose your chess piece."
         loop do
             location = gets.chomp.split(',').map { |e| e.to_i}
             return location if location.length == 2 && !board[location].nil? && board[location].color == color
             
-            puts "Wrong input!. Be sure to fulfill choice criteria."
+            puts "Wrong input!. Be sure you picked a #{color} chess piece and the coordinates input have the right value and format."
         end
     end
 
     def target_location(color)
-        puts "Enter target location of your chess piece. Please separate coordinates with a comma(,)"
+        puts "Make your move."
         gets.chomp.split(',').map { |e| e.to_i}
     end
 
@@ -61,7 +62,7 @@ class Chess
                 board.move_piece(starting_loc,target_loc) 
                 break
             end
-            puts "Invalid move!"
+            puts "Invalid move!. Check your coordinates values and format."
         end
     end
 
