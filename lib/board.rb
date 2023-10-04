@@ -5,6 +5,7 @@ class Board
     include Escapable
     def initialize 
         @chess_board = Array.new(8) { Array.new(8)}
+        self.starting_board
     end
 
     def display_board 
