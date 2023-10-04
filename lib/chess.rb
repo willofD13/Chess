@@ -4,13 +4,13 @@ require 'pry-byebug'
 class Chess 
      
     attr_accessor :board, :turn, :color, :end_game, :current_player
-    def initialize(board,player_1 = nil,player_2 = nil,color = nil,current_player = nil)
+    def initialize(board,player_1 = nil,player_2 = nil,color = nil,current_player = nil,turn = 1)
         @board = board
         @color = color
         @end_game = false
         @player_1 = player_1
         @player_2 = player_2
-        @turn = 1
+        @turn = turn
         @current_player = current_player
     end
 
@@ -78,6 +78,7 @@ class Chess
 
     def to_yaml
         YAML.dump ({
+          :turn => @turn,
           :board => board,
           :player_1 => @player_1,
           :player_2 => @player_2,
