@@ -3,7 +3,7 @@ require_relative 'board.rb'
 require 'pry-byebug'
 class Chess 
      
-    attr_accessor :board, :turn, :color, :end_game
+    attr_accessor :board, :turn, :color, :end_game, :current_player
     def initialize(board,player_1 = nil,player_2 = nil,color = nil)
         @board = board
         @color = color
@@ -91,7 +91,8 @@ class Chess
         until end_game == true do
             @turn.odd? ? color = 'white' : color = 'black'
             player_turn(color)
-            @turn += 1 
+            @turn += 1
+            binding.pry 
         end
     end
 end
