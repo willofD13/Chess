@@ -4,14 +4,12 @@ require 'pry-byebug'
 class Chess 
     @@turn = 1 
     attr_accessor :board, :turn, :color, :end_game
-    def initialize(board)
+    def initialize(board,player_1,player_2)
         @board = board
-        board.starting_board
-        board.display_board
         @color = color
         @end_game = false
-        @player_1 = nil 
-        @player_2 = nil
+        @player_1 = player_1
+        @player_2 = player_2
         @current_player = @@turn.odd? ? @player_1 : @player_2
     end
 
@@ -87,6 +85,8 @@ class Chess
     end
 
     def play_game
+        board.starting_board
+        board.display_board
         until end_game == true do
             @@turn.odd? ? color = 'white' : color = 'black'
             player_turn(color)
