@@ -2,15 +2,16 @@ require_relative 'pieces.rb'
 require_relative 'board.rb'
 require 'pry-byebug'
 class Chess 
-    @@turn = 1 
+     
     attr_accessor :board, :turn, :color, :end_game
-    def initialize(board,player_1,player_2,color)
+    def initialize(board,player_1 = nil,player_2 = nil,color = nil)
         @board = board
         @color = color
         @end_game = false
         @player_1 = player_1
         @player_2 = player_2
-        @current_player = @@turn.odd? ? @player_1 : @player_2
+        @turn = 1
+        @current_player = @turn.odd? ? @player_1 : @player_2
     end
 
     def introduction
@@ -88,9 +89,9 @@ class Chess
         board.starting_board
         board.display_board
         until end_game == true do
-            @@turn.odd? ? color = 'white' : color = 'black'
+            @turn.odd? ? color = 'white' : color = 'black'
             player_turn(color)
-            @@turn += 1 
+            @turn += 1 
         end
     end
 end
