@@ -97,7 +97,7 @@ class Chess
     def load_game
         puts "Choose the save file from 1-5"
         answer = gets.chomp 
-        self.from_yaml("./saved_games/#{answer}.yml")
+        from_yaml("./saved_games/#{answer}.yml")
     end
 
     def from_yaml(file)
