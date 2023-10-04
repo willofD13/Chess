@@ -12,7 +12,11 @@ class Board
         8.times do |r|
             puts "_ _ _ _ _ _ _ _"
             8.times do |c|
-                print "#{@chess_board[r][c]} "
+                if @chess_board[r][c].nil?
+                    print '  '
+                else
+                    print "#{@chess_board[r][c]} "
+                end
             end
             puts ''
         end
