@@ -14,6 +14,7 @@ module Slideable
                 end
                 if is_there_an_enemy?([current_r,current_c])
                     moves << [current_r,current_c]
+                    break
                 end
             end
         end
