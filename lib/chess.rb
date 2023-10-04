@@ -78,9 +78,9 @@ class Chess
 
     def save_game
         puts "choose your file from 1-5"
-            answer = gets.chomp 
-            Dir.mkdir('saved_games') unless Dir.exist?('saved_games')
-            File.open("./saved_games/#{answer}.yml", 'w') { |f| f.write(to_yaml) }
+        answer = gets.chomp 
+        Dir.mkdir('saved_games') unless Dir.exist?('saved_games')
+        File.open("./saved_games/#{answer}.yml", 'w') { |f| f.write(to_yaml) }
     end
 
     def to_yaml
@@ -93,6 +93,11 @@ class Chess
           :current_player => @current_player
         })
     end
+
+    def from_yaml(file)
+        data = YAML.load(File.read(file))
+    end
+
 
     def play_game
         board.starting_board
