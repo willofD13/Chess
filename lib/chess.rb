@@ -81,7 +81,8 @@ class Chess
           :board => board,
           :player_1 => @player_1,
           :player_2 => @player_2,
-          :color => @color
+          :color => @color,
+          :current_player => @current_player
         })
     end
 
