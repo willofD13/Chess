@@ -1,18 +1,21 @@
 require_relative 'pieces.rb'
 require_relative 'board.rb'
 require 'pry-byebug'
+require 'json'
 class Chess 
      
-    attr_accessor :board, :turn, :color, :end_game, :current_player
-    def initialize(board = nil,player_1 = nil,player_2 = nil,color = nil,current_player = nil,turn = nil)
-        ask_for_load if Dir.exist?('saved_games')
+    attr_accessor :board, :turn, :color, :end_game, :current_player, :player_1, :player_2
+    def initialize(board = nil,player_1 = nil,player_2 = nil,color = nil,current_player = nil,turn = 1)
+        ask_for_load if Dir.exist?('saved_games') && player_1.nil?
         @board = board
         @color = color
         @end_game = false
         @player_1 = player_1
         @player_2 = player_2
+        introduction if player_1.nil?
         @turn = turn
         @current_player = current_player
+        play_game
     end
 
     def ask_for_load
@@ -102,7 +105,7 @@ class Chess
     end
 
     def to_yaml
-        YAML.dump ({
+        JSON.dump ({
           :board => @board,
           :player_1 => @player_1,
           :player_2 => @player_2,
@@ -115,21 +118,19 @@ class Chess
     def load_game
         puts "Choose the save file from 1-5"
         answer = gets.chomp 
-        from_yaml("./saved_games/#{answer}.yml")
+        Chess.from_yaml("./saved_games/#{answer}.yml")
     end
 
-    def from_yaml(file)
-        data = YAML.load(File.read(file))
+    def self.from_yaml(file)
+        data = JSON.load(File.read(file))
         self.new(data)
-        self.play_game
     end
 
 
     def play_game
-        @turn = 1
         board.display_board
         until end_game == true do
-            current_player = @turn.odd? ? @player_1 : @player_2
+            @turn.odd? ? current_player = @player_1 : current_player = @player_2
             @turn.odd? ? color = 'white' : color = 'black'
             player_turn(color)
             @turn += 1
