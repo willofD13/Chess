@@ -16,11 +16,18 @@ class Chess
     end
 
     def ask_for_load
-            puts 'Do you want to load a game?'
-            answer = gets.chomp
-            if answer == 'y'
-                load_game
-            end
+        puts 'Do you want to load a game?'
+        answer = gets.chomp
+        if answer == 'y'
+            load_game
+        end
+    end
+
+    def ask_for_save
+        puts 'Do you want to save your game?'
+        answer = gets.chomp
+        if answer == 'y'
+            save_game
         end
     end
 
@@ -70,6 +77,7 @@ class Chess
             end_game = true
             puts "STALEMATE. Game is over"
         end
+        ask_for_save
     end
 
     def verify_and_move(starting_loc,color)
@@ -125,7 +133,6 @@ class Chess
             @turn.odd? ? color = 'white' : color = 'black'
             player_turn(color)
             @turn += 1
-            binding.pry 
         end
     end
 end
