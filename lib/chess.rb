@@ -31,7 +31,9 @@ class Chess
         puts "Choose your chess piece."
         loop do
             location = gets.chomp.split(',').map { |e| e.to_i}
-            return location if location.length == 2 && !board[location].nil? && board[location].color == color
+            if location.length == 2 && !board[location].nil? && board[location].color == color && !board[location].valid_moves(location,board).empty?
+                return location
+            end 
             
             puts "Wrong input!. Be sure you picked a #{color} chess piece and the coordinates input have the right value and format."
         end
