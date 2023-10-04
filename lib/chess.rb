@@ -76,6 +76,13 @@ class Chess
         end
     end
 
+    def save_game
+        puts "choose your file from 1-5"
+            answer = gets.chomp 
+            Dir.mkdir('saved_games') unless Dir.exist?('saved_games')
+            File.open("./saved_games/#{answer}.yml", 'w') { |f| f.write(to_yaml) }
+    end
+
     def to_yaml
         YAML.dump ({
           :turn => @turn,
