@@ -4,7 +4,8 @@ require 'pry-byebug'
 class Chess 
      
     attr_accessor :board, :turn, :color, :end_game, :current_player
-    def initialize(board,player_1 = nil,player_2 = nil,color = nil,current_player = nil,turn = 1)
+    def initialize(board = nil,player_1 = nil,player_2 = nil,color = nil,current_player = nil,turn = nil)
+        ask_for_load if Dir.exist?('saved_games')
         @board = board
         @color = color
         @end_game = false
@@ -12,6 +13,15 @@ class Chess
         @player_2 = player_2
         @turn = turn
         @current_player = current_player
+    end
+
+    def ask_for_load
+            puts 'Do you want to load a game?'
+            answer = gets.chomp
+            if answer == 'y'
+                load_game
+            end
+        end
     end
 
     def introduction
@@ -85,7 +95,7 @@ class Chess
 
     def to_yaml
         YAML.dump ({
-          :board => board,
+          :board => @board,
           :player_1 => @player_1,
           :player_2 => @player_2,
           :color => @color,
@@ -103,11 +113,12 @@ class Chess
     def from_yaml(file)
         data = YAML.load(File.read(file))
         self.new(data)
+        self.play_game
     end
 
 
     def play_game
-        board.starting_board
+        @turn = 1
         board.display_board
         until end_game == true do
             current_player = @turn.odd? ? @player_1 : @player_2
