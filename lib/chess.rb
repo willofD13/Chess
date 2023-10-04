@@ -77,6 +77,15 @@ class Chess
         end
     end
 
+    def to_yaml
+        YAML.dump ({
+          :board => board,
+          :player_1 => @player_1,
+          :player_2 => @player_2,
+          :color => @color
+        })
+    end
+
     def play_game
         until end_game == true do
             @@turn.odd? ? color = 'white' : color = 'black'
