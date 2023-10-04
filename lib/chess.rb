@@ -85,17 +85,24 @@ class Chess
 
     def to_yaml
         YAML.dump ({
-          :turn => @turn,
           :board => board,
           :player_1 => @player_1,
           :player_2 => @player_2,
           :color => @color,
-          :current_player => @current_player
+          :current_player => @current_player,
+          :turn => @turn          
         })
+    end
+
+    def load_game
+        puts "Choose the save file from 1-5"
+        answer = gets.chomp 
+        self.from_yaml("./saved_games/#{answer}.yml")
     end
 
     def from_yaml(file)
         data = YAML.load(File.read(file))
+        self.new(data)
     end
 
 
