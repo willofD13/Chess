@@ -4,14 +4,14 @@ require 'pry-byebug'
 class Chess 
      
     attr_accessor :board, :turn, :color, :end_game, :current_player
-    def initialize(board,player_1 = nil,player_2 = nil,color = nil)
+    def initialize(board,player_1 = nil,player_2 = nil,color = nil,current_player = nil)
         @board = board
         @color = color
         @end_game = false
         @player_1 = player_1
         @player_2 = player_2
         @turn = 1
-        @current_player = @turn.odd? ? @player_1 : @player_2
+        @current_player = current_player
     end
 
     def introduction
@@ -20,7 +20,7 @@ class Chess
         @player_1 = gets.chomp
         puts 'Great. You move the white pawns'
         puts 'Player2 enter your name'
-        @player_2 = gets.chomp 
+        @player_2 = gets.chomp
         puts 'Thank you. You move the black pawns'
         puts 'You are ready to play!.Be sure to pick the right chess piece color.'
         puts 'First coordinate represents the board row while the second represents column.Both of them must be between 0 and 7.Have fun!'
@@ -89,6 +89,7 @@ class Chess
         board.starting_board
         board.display_board
         until end_game == true do
+            current_player = @turn.odd? ? @player_1 : @player_2
             @turn.odd? ? color = 'white' : color = 'black'
             player_turn(color)
             @turn += 1
