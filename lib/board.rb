@@ -83,11 +83,7 @@ class Board
     def check?(color)
         king_loc = pieces.find { |e| e.color != color && e.class == King}.location
         pieces.select { |p| p.color == color }.each do |piece|
-            if piece.valid_moves(piece.location,self).include?(king_loc)
-                return true 
-            else 
-                next
-            end
+            return true if piece.valid_moves(piece.location,self).include?(king_loc)
         end
         return false
     end 
