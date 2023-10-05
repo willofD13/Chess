@@ -80,6 +80,7 @@ class Chess
             end_game = true
             puts "STALEMATE. Game is over"
         end
+        
         ask_for_save
     end
 
@@ -101,10 +102,10 @@ class Chess
         puts "choose your file from 1-5"
         answer = gets.chomp 
         Dir.mkdir('saved_games') unless Dir.exist?('saved_games')
-        File.open("./saved_games/#{answer}.yml", 'w') { |f| f.write(to_yaml) }
+        File.open("./saved_games/#{answer}.jsn", 'w') { |f| f.write(to_json) }
     end
 
-    def to_yaml
+    def to_json
         JSON.dump ({
           :board => @board,
           :player_1 => @player_1,
@@ -113,17 +114,18 @@ class Chess
           :current_player => @current_player,
           :turn => @turn          
         })
+        binding.pry
     end
 
     def load_game
         puts "Choose the save file from 1-5"
         answer = gets.chomp 
-        Chess.from_yaml("./saved_games/#{answer}.yml")
+        Chess.from_json("./saved_games/#{answer}.jsn")
     end
 
-    def self.from_yaml(file)
+    def self.from_json(file)
         data = JSON.load(File.read(file))
-        self.new(data)
+        self.new(data[:board],data[:player_1],data[:player_2],data[:color],data[:current_player],data[:turn])
     end
 
 
