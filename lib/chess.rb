@@ -80,8 +80,6 @@ class Chess
             end_game = true
             puts "STALEMATE. Game is over"
         end
-        
-        ask_for_save
     end
 
     def verify_and_move(starting_loc,color)
@@ -143,6 +141,7 @@ class Chess
             swap_color
             player_turn(color)
             @turn += 1
+            ask_for_save
         end
     end
 end
