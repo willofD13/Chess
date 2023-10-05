@@ -99,6 +99,7 @@ class Chess
     def save_game
         puts "choose your file from 1-5"
         answer = gets.chomp 
+        board.save_board(answer)
         Dir.mkdir('saved_games') unless Dir.exist?('saved_games')
         File.open("./saved_games/#{answer}.jsn", 'w') { |f| f.write(to_json) }
     end
@@ -117,12 +118,13 @@ class Chess
     def load_game
         puts "Choose the save file from 1-5"
         answer = gets.chomp 
+        board.load_board(answer)
         Chess.from_json("./saved_games/#{answer}.jsn")
     end
 
     def self.from_json(file)
         data = JSON.load(File.read(file))
-        self.new(data['board'],data['player_1'],data['player_2'],data['color'],data['current_player'],data['turn'])
+        new(data['board'],data['player_1'],data['player_2'],data['color'],data['current_player'],data['turn'])
     end
 
     def swap_player
