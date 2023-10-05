@@ -4,13 +4,13 @@ require_relative './pieces/escapable.rb'
 class Board 
     include Escapable
     attr_reader :chess_board
-    def initialize 
-        @chess_board = Array.new(8) { Array.new(8)}
-        self.starting_board
+    def initialize(chess_board = Array.new(8) { Array.new(8)})
+        @chess_board = chess_board
+        starting_board
     end
 
-    def display_board 
-        
+    def display_board
+
         8.times do |r|
             puts "_ _ _ _ _ _ _ _"
             8.times do |c|
@@ -109,6 +109,20 @@ class Board
         JSON.dump ({
             'chess_board' => @chess_board
         })
+    end
+
+    def self.from_json(file)
+        board_game = JSON.load(File.read(file))
+        new(board_game['chess_board'])
+    end
+
+    def save_board(answer)
+        Dir.mkdir('board_games') unless Dir.exist?('board_games')
+        File.open("./board_games/#{answer}.jsn", 'w') { |f| f.write(to_json) }
+    end
+
+    def load_board(answer)
+        self.from_json("./board_games/#{answer}.jsn")
     end
 
 end
