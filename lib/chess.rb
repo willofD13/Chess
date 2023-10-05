@@ -74,7 +74,7 @@ class Chess
         end
         if board.checkmate?(color)
             end_game = true
-            puts "CHECKMATE. The winner is :#{current_player}."
+            puts "CHECKMATE. The winner is :#{@current_player}."
         end
         if board.stalemate?(color)
             end_game = true
@@ -114,7 +114,6 @@ class Chess
           :current_player => @current_player,
           :turn => @turn          
         })
-        binding.pry
     end
 
     def load_game
@@ -128,12 +127,20 @@ class Chess
         self.new(data[:board],data[:player_1],data[:player_2],data[:color],data[:current_player],data[:turn])
     end
 
+    def swap_player
+        @turn.odd? ? @current_player = @player_1 : @current_player = @player_2
+    end
+
+    def swap_color 
+        @turn.odd? ? @color = 'white' : @color = 'black'
+    end
+
 
     def play_game
         board.display_board
         until end_game == true do
-            @turn.odd? ? current_player = @player_1 : current_player = @player_2
-            @turn.odd? ? color = 'white' : color = 'black'
+            swap_player
+            swap_color
             player_turn(color)
             @turn += 1
         end
