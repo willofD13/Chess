@@ -3,6 +3,7 @@ require 'pry-byebug'
 require_relative './pieces/escapable.rb'
 class Board 
     include Escapable
+    attr_reader :chess_board
     def initialize 
         @chess_board = Array.new(8) { Array.new(8)}
         self.starting_board
