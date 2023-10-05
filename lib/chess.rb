@@ -105,12 +105,12 @@ class Chess
 
     def to_json
         JSON.dump ({
-          :board => @board,
-          :player_1 => @player_1,
-          :player_2 => @player_2,
-          :color => @color,
-          :current_player => @current_player,
-          :turn => @turn          
+          'board' => @board,
+          'player_1' => @player_1,
+          'player_2' => @player_2,
+          'color' => @color,
+          'current_player' => @current_player,
+          'turn' => @turn          
         })
     end
 
@@ -122,7 +122,7 @@ class Chess
 
     def self.from_json(file)
         data = JSON.load(File.read(file))
-        self.new(data[:board],data[:player_1],data[:player_2],data[:color],data[:current_player],data[:turn])
+        self.new(data['board'],data['player_1'],data['player_2'],data['color'],data['current_player'],data['turn'])
     end
 
     def swap_player
