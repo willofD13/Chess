@@ -122,7 +122,7 @@ class Board
     end
 
     def load_board(answer)
-        self.from_json("./board_games/#{answer}.jsn")
+        from_json("./board_games/#{answer}.jsn")
     end
 
 end
