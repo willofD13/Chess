@@ -6,8 +6,8 @@ class Chess
      
     attr_accessor :board, :turn, :color, :end_game, :current_player, :player_1, :player_2
     def initialize(board = nil,player_1 = nil,player_2 = nil,color = nil,current_player = nil,turn = 1)
-        ask_for_load if Dir.exist?('saved_games') && player_1.nil?
         @board = board
+        ask_for_load if Dir.exist?('saved_games') && player_1.nil?
         @color = color
         @end_game = false
         @player_1 = player_1
@@ -106,7 +106,6 @@ class Chess
 
     def to_json
         JSON.dump ({
-          'board' => @board,
           'player_1' => @player_1,
           'player_2' => @player_2,
           'color' => @color,
@@ -118,13 +117,13 @@ class Chess
     def load_game
         puts "Choose the save file from 1-5"
         answer = gets.chomp 
-        board.load_board(answer)
-        Chess.from_json("./saved_games/#{answer}.jsn")
+        new_board = @board.load_board(answer)
+        Chess.from_json("./saved_games/#{answer}.jsn",new_board)
     end
 
-    def self.from_json(file)
+    def self.from_json(file,new_board)
         data = JSON.load(File.read(file))
-        new(data['board'],data['player_1'],data['player_2'],data['color'],data['current_player'],data['turn'])
+        new(new_board,data['player_1'],data['player_2'],data['color'],data['current_player'],data['turn'])
     end
 
     def swap_player
