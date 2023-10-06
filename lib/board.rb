@@ -111,9 +111,9 @@ class Board
         })
     end
 
-    def self.from_json(file)
+    def from_json(file)
         board_game = JSON.load(File.read(file))
-        new(board_game['chess_board'])
+        Board.new(board_game['chess_board'])
     end
 
     def save_board(answer)
