@@ -6,7 +6,7 @@ class Board
     attr_reader :chess_board
     def initialize(chess_board = Array.new(8) { Array.new(8)})
         @chess_board = chess_board
-        starting_board
+        starting_board if @chess_board.flatten.all? { |e| e.nil? }
     end
 
     def display_board
