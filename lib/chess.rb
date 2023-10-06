@@ -6,8 +6,8 @@ class Chess
      
     attr_accessor :board, :turn, :color, :end_game, :current_player, :player_1, :player_2
     def initialize(board = nil,player_1 = nil,player_2 = nil,color = nil,current_player = nil,turn = 1)
-        @board = board
         ask_for_load if Dir.exist?('saved_games') && player_1.nil?
+        @board = board
         @color = color
         @end_game = false
         @player_1 = player_1
@@ -117,7 +117,7 @@ class Chess
     def load_game
         puts "Choose the save file from 1-5"
         answer = gets.chomp 
-        new_board = @board.load_board(answer)
+        new_board = Board.load_board(answer)
         Chess.from_json("./saved_games/#{answer}.jsn",new_board)
     end
 

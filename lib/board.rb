@@ -111,7 +111,7 @@ class Board
         })
     end
 
-    def from_json(file)
+    def self.from_json(file)
         board_game = JSON.load(File.read(file))
         Board.new(board_game['chess_board'])
     end
@@ -121,8 +121,8 @@ class Board
         File.open("./board_games/#{answer}.jsn", 'w') { |f| f.write(to_json) }
     end
 
-    def load_board(answer)
-        from_json("./board_games/#{answer}.jsn")
+    def self.load_board(answer)
+        self.from_json("./board_games/#{answer}.jsn")
     end
 
 end
