@@ -105,6 +105,8 @@ class Board
         return false
     end
 
+    private
+    
     def to_json
         JSON.dump ({
             'chess_board' => @chess_board
