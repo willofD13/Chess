@@ -18,33 +18,7 @@ class Chess
         play_game
     end
 
-    def ask_for_load
-        puts 'Do you want to load a game?'
-        answer = gets.chomp
-        if answer == 'y'
-            load_game
-        end
-    end
-
-    def ask_for_save
-        puts 'Do you want to save your game?'
-        answer = gets.chomp
-        if answer == 'y'
-            save_game
-        end
-    end
-
-    def introduction
-        puts 'Welcome to the game.'
-        puts 'Player1 enter your name'
-        @player_1 = gets.chomp
-        puts 'Great. You move the white pawns'
-        puts 'Player2 enter your name'
-        @player_2 = gets.chomp
-        puts 'Thank you. You move the black pawns'
-        puts 'You are ready to play!.Be sure to pick the right chess piece color.'
-        puts 'First coordinate represents the board row while the second represents column.Both of them must be between 0 and 7.Have fun!'
-    end
+    private
 
     def starting_location(color)
         puts "Choose your chess piece."
@@ -96,6 +70,57 @@ class Chess
         end
     end
 
+    def play_game
+        board.display_board
+        until end_game == true do
+            swap_player
+            swap_color
+            player_turn(color)
+            @turn += 1
+            ask_for_save
+        end
+    end
+
+    def introduction
+        puts 'Welcome to the game.'
+        puts 'Player1 enter your name'
+        @player_1 = gets.chomp
+        puts 'Great. You move the white pawns'
+        puts 'Player2 enter your name'
+        @player_2 = gets.chomp
+        puts 'Thank you. You move the black pawns'
+        puts 'You are ready to play!.Be sure to pick the right chess piece color.'
+        puts 'First coordinate represents the board row while the second represents column.Both of them must be between 0 and 7.Have fun!'
+    end
+
+    def ask_for_load
+        puts 'Do you want to load a game?'
+        answer = gets.chomp
+        if answer == 'y'
+            load_game
+        end
+    end
+
+    def load_game
+        puts "Choose the save file from 1-5"
+        answer = gets.chomp 
+        new_board = Board.load_board(answer)
+        Chess.from_json("./saved_games/#{answer}.jsn",new_board)
+    end
+
+    def self.from_json(file,new_board)
+        data = JSON.load(File.read(file))
+        new(new_board,data['player_1'],data['player_2'],data['color'],data['current_player'],data['turn'])
+    end
+
+    def ask_for_save
+        puts 'Do you want to save your game?'
+        answer = gets.chomp
+        if answer == 'y'
+            save_game
+        end
+    end
+
     def save_game
         puts "choose your file from 1-5"
         answer = gets.chomp 
@@ -114,35 +139,11 @@ class Chess
         })
     end
 
-    def load_game
-        puts "Choose the save file from 1-5"
-        answer = gets.chomp 
-        new_board = Board.load_board(answer)
-        Chess.from_json("./saved_games/#{answer}.jsn",new_board)
-    end
-
-    def self.from_json(file,new_board)
-        data = JSON.load(File.read(file))
-        new(new_board,data['player_1'],data['player_2'],data['color'],data['current_player'],data['turn'])
-    end
-
     def swap_player
         @turn.odd? ? @current_player = @player_1 : @current_player = @player_2
     end
 
     def swap_color 
         @turn.odd? ? @color = 'white' : @color = 'black'
-    end
-
-
-    def play_game
-        board.display_board
-        until end_game == true do
-            swap_player
-            swap_color
-            player_turn(color)
-            @turn += 1
-            ask_for_save
-        end
     end
 end
