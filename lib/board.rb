@@ -105,8 +105,18 @@ class Board
         return false
     end
 
+
+    def save_board(answer)
+        Dir.mkdir('board_games') unless Dir.exist?('board_games')
+        File.open("./board_games/#{answer}.jsn", 'w') { |f| f.write(to_json) }
+    end
+
+    def self.load_board(answer)
+        self.from_json("./board_games/#{answer}.jsn")
+    end
+
     private
-    
+
     def to_json
         JSON.dump ({
             'chess_board' => @chess_board
@@ -116,15 +126,6 @@ class Board
     def self.from_json(file)
         board_game = JSON.load(File.read(file))
         Board.new(board_game['chess_board'])
-    end
-
-    def save_board(answer)
-        Dir.mkdir('board_games') unless Dir.exist?('board_games')
-        File.open("./board_games/#{answer}.jsn", 'w') { |f| f.write(to_json) }
-    end
-
-    def self.load_board(answer)
-        self.from_json("./board_games/#{answer}.jsn")
     end
 
 end
